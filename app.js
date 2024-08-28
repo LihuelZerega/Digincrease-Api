@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const sequelize = require('./src/config/database');
 const studiocahRoutes = require('./src/routes/studiocahRoutes');
+const digincreaseRoutes = require('./src/routes/digincreaseRoutes');
 const rateLimiter = require('./src/middlewares/rateLimiter');
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use(rateLimiter);
 
 app.use('/api/studiocah', studiocahRoutes);
+app.use('/api/digincrease', digincreaseRoutes);
 
 sequelize.sync({ force: true }).then(() => {
   console.log('Database & tables created!');
